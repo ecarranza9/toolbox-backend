@@ -26,7 +26,7 @@ export const getFilesData = async (req, res) => {
     const { query } = req
     const response = await httpGET(getFilesOptions, false)
     if (!response) {
-      res.json('Error to get files list')
+      return res.json('Error to get files list')
     }
     let files = response.files
     if (query.fileName) {
@@ -54,8 +54,8 @@ export const getFilesList = async (req, res) => {
     if (!files) {
       res.json('Error to get files list')
     }
-    res.status(200).json(files)
+    return res.status(200).json(files)
   } catch (error) {
-    res.status(404).json(error).end()
+    return res.status(404).json(error).end()
   }
 }
